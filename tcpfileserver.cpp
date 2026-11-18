@@ -39,8 +39,16 @@ void TcpFileServer::start()
     serverStatusLabel->setText("監聽中....");
 }
 
-void TcpFileServer::acceptConnection()
+void TcpFileServer::acceptConnection()//用C:\Users\user>Telnet 127.0.0.1 16998 CMD
 {
+    //qDebug()<<"Connection request....";
+    tcpServerConnection=tcpServer.nextPendingConnection();
+    connect(tcpServerConnection,SIGNAL(readyRead()),
+            this,SLOT(updateServerProgress()));
+    connect(tcpServerConnection, SIGNAL(errorOccurred(QAbstractSocket::SocketError)),
+            this,SLOT(displayError(QAbstractSocket::SocketError)));
+    serverStatusLabel->setText(tr("接受連線"));
+    tcpServer.close();
 
 }
 
