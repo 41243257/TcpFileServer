@@ -41,7 +41,7 @@ void TcpFileServer::start()
 
 void TcpFileServer::acceptConnection()//用C:\Users\user>Telnet 127.0.0.1 16998 CMD
 {
-    //qDebug()<<"Connection request....";
+    //qDebug()<<"Connection request....good";
     tcpServerConnection=tcpServer.nextPendingConnection();
     connect(tcpServerConnection,SIGNAL(readyRead()),
             this,SLOT(updateServerProgress()));
